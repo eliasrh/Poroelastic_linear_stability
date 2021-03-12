@@ -7,6 +7,8 @@
 % obstain the anti-plane stability follow the instuction in Heimisson, Rudnicki and Lapusta (2021)
 % 
 
+% Please refernce Heimisson, Rudnicki, and Lapusta 2021 if you use this code.
+
 %%
 %Copyright 2021: Elias Rafn Heimisson
 
