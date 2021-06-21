@@ -7,8 +7,6 @@
 % obstain the anti-plane stability follow the instuction in Heimisson, Rudnicki and Lapusta (2021)
 % 
 
-% Please refernce Heimisson, Rudnicki, and Lapusta 2021 if you use this code.
-
 %%
 %Copyright 2021: Elias Rafn Heimisson
 
@@ -65,15 +63,15 @@ betas =phi*(bfs - bns); % Corresponding uniaxial lumped compressibility
 
 %% Poroelastic Bulk 
 %Independent
-nu = 0.20; %Drained Poisson's ration
-nuu = 0.40; %Undrained Poisson's ration
-B = 0.60; %Skempton's coefficient
+% Westerly Granite values for nu, nuu, B (see Cheng (2016))
+nu = 0.250; %Drained Poisson's ration
+nuu = 0.331; %Undrained Poisson's ration
+B = 0.810; %Skempton's coefficient
 G = 30.0e9; %Shear modulus [Pa]
 c = 1.0e-4; %Hydraulic diffusivity [m^2/s]
 %Dependent:
-alpB = 3*(nuu-nu)/(B*(1+nuu)*(1-2*nu)); %Biot coefficient
-kappa = c/( 2*G*(1-nu)/(1-2*nu) * (B*(1+nu))/((3*alpB*(1 - nu)-2*B*alpB^2*(1-2*nu))) ); %Bulk mobility [m^2/Pa s]
-
+alpB = 3*(nuu-nu)/(B*(1+nuu)*(1-2*nu)); %biot coefficient
+kappa = c/(2*G*(1+nu)*B / (3*alpB*(1-alpB*B)*(1-2*nu) ) ); %bulk mobility m^2/(Pa s)
 %% Implement equations:
 % Various equations are written up using Matlab's anonymous functions
 

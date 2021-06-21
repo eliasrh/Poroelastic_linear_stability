@@ -7,8 +7,6 @@
 % obstain the anti-plane stability follow the instuction in Heimisson, Rudnicki and Lapusta (2021)
 % 
 
-% Please refernce Heimisson, Rudnicki, and Lapusta 2021 if you use this code.
-
 %%
 %Copyright 2021: Elias Rafn Heimisson
 
@@ -32,7 +30,7 @@ clear
 
 
 %% Set the wavenumber
-k = 1.232341664299569; % [1/m] for the set of parameter selected this wavenumber will approximately return s for a critically stable fault
+k = 1.188713836340519; % [1/m] for the set of parameter selected this wavenumber will approximately return s for a critically stable fault
 %% Set frictional parameters
 %Independent:
 a = 0.01; %rate dependence of friction
@@ -68,15 +66,15 @@ betas =phi*(bfs - bns); % Corresponding uniaxial lumped compressibility
 
 %% Poroelastic Bulk 
 %Independent
-nu = 0.20; %Drained Poisson's ration
-nuu = 0.40; %Undrained Poisson's ration
-B = 0.60; %Skempton's coefficient
+% Westerly Granite values for nu, nuu, B (see Cheng (2016))
+nu = 0.250; %Drained Poisson's ration
+nuu = 0.331; %Undrained Poisson's ration
+B = 0.810; %Skempton's coefficient
 G = 30.0e9; %Shear modulus [Pa]
 c = 1.0e-4; %Hydraulic diffusivity [m^2/s]
 %Dependent:
-alpB = 3*(nuu-nu)/(B*(1+nuu)*(1-2*nu)); %Biot coefficient
-kappa = c/( 2*G*(1-nu)/(1-2*nu) * (B*(1+nu))/((3*alpB*(1 - nu)-2*B*alpB^2*(1-2*nu))) ); %Bulk mobility [m^2/Pa s]
-
+alpB = 3*(nuu-nu)/(B*(1+nuu)*(1-2*nu)); %biot coefficient
+kappa = c/(2*G*(1+nu)*B / (3*alpB*(1-alpB*B)*(1-2*nu) ) ); %bulk mobility m^2/(Pa s)
 %% Implement equations:
 % Various equations are written up using Matlab's anonymous functions
 
@@ -120,7 +118,7 @@ kcra = 2*si0*(b-a)/(L*G);
 %Undrained in-plane critical wavenumber used for determining if separation of scales is honored: 
 kcr = 2*si0*(b-a)*(1-nuu)/(L*G);
 
-if kcr*epsi > 0.05
+if k*epsi > 0.05
     disp('warning: separation of scales may not be honored')
     error('stop')
 end
