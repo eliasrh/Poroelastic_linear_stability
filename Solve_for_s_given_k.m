@@ -6,7 +6,10 @@
 % omitted form the manuscript due to length and complexity. In order to
 % obstain the anti-plane stability follow the instuction in Heimisson, Rudnicki and Lapusta (2021)
 % 
-
+%If the code is used please cite: 
+%Heimisson, E. R., Rudnicki, J., & Lapusta, N. (2021). Dilatancy and compaction of a rate-and-state fault in a 
+%poroelastic medium: Linearized stability analysis. Journal of Geophysical Research: 
+%Solid Earth, 126, e2021JB022071. https://doi.org/10.1029/2021JB022071
 %%
 %Copyright 2021: Elias Rafn Heimisson
 
